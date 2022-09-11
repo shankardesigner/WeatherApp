@@ -32,6 +32,7 @@ const FILTER = observer(() => {
   };
 
   const onSearchHandle = (searchTerm: string) => {
+    if(!searchTerm) return;
     store.loadWeather(searchTerm);
   };
 
