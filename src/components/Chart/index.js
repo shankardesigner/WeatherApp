@@ -21,17 +21,24 @@ ChartJS.register(
   Tooltip
 );
 
-export const options = {
-  responsive: true,
-};
-
-
-
 const Chart = observer(() => {
   const weather = store.currentWeather;
   const tempCurrentWeather = store.currentWeather;
   const labels = weather?.map((dl) => dl.time);
   const datasets = weather?.map((ds) => ds.temp);
+
+   const options = {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (tooltipItems) => {
+            return tooltipItems?.formattedValue+ '°' + store.currentTemperature
+          },
+        }
+      }
+    }
+  };
 
   if (store.loading) {
     return (
