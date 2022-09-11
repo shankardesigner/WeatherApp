@@ -7,18 +7,14 @@ import moment from "moment";
 import { Col, Row, Skeleton } from "antd";
 
 const WeatherInfo = observer(() => {
-  const [weather, setWeather] = useState(null);
-  const tempCurrentWeather = store.currentWeather;
+  const tempCurrentWeather = store?.currentWeather;
   const city = store.city;
 
   useEffect(() => {
     feather.replace();
-    if (store.weather) {
-      setWeather(store.weather);
-    }
   }, []);
 
-  const currentWeather = tempCurrentWeather[0];
+  
   if (store.loading) {
     return (
       <Row>
@@ -28,6 +24,7 @@ const WeatherInfo = observer(() => {
       </Row>
     );
   }
+  const currentWeather = tempCurrentWeather[0];
   if (!!!currentWeather) return <>Loading...</>;
 
   return (

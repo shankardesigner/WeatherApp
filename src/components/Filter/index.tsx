@@ -12,7 +12,6 @@ const todaysDate = new Date();
 const FILTER = observer(() => {
   const city = store.city;
   const weatherKeys = store.availableDates || [];
-  const currentTemp = store.getWeather();
   const [date, setDate] = useState(todaysDate);
 
   const switchDates = (type: "prev" | "next") => {
@@ -29,7 +28,7 @@ const FILTER = observer(() => {
   };
 
   const onTempChange = () => {
-    store.toggleTemperature();
+    store.toggleTemperature(date);
   };
 
   const onSearchHandle = (searchTerm: string) => {
